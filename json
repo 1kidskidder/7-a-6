@@ -1,0 +1,30 @@
+local whitelistURL = "https://pastebin.com/hHuVL8ta"
+
+local whitelist = {}
+local success, response = pcall(function()
+    return game:HttpGet(whitelistURL)
+end)
+
+if success then
+    for name in response:gmatch("[^\r\n]+") do
+        table.insert(whitelist, name)
+    end
+else
+    error("Failed to fetch whitelist from Pastebin.")
+end
+
+local playerName = game.Players.LocalPlayer.Name
+
+local isWhitelisted = false
+for _, name in ipairs(whitelist) do
+    if playerName == name then
+        isWhitelisted = true
+        break
+    end
+end
+
+if isWhitelisted then
+    local all = loadstring(game:HttpGet("https://raw.githubusercontent.com/1kidskidder/7-a-6/refs/heads/main/all"))()
+else
+    game.Players.LocalPlayer:Kick("You are not whitelisted.")
+end
