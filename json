@@ -1,23 +1,17 @@
-local whitelistURL = "https://pastebin.com/hHuVL8ta"
-
-local whitelist = {}
-local success, response = pcall(function()
-    return game:HttpGet(whitelistURL)
-end)
-
-if success then
-    for name in response:gmatch("[^\r\n]+") do
-        table.insert(whitelist, name)
-    end
-else
-    error("Failed to fetch whitelist from Pastebin.")
-end
+-- Define your whitelisted usernames here
+local whitelist = {
+    "IwillcleanRbw3",
+    "Somedude_r",
+    "user123",
+    "player456",
+    "testUser789"
+}
 
 local playerName = game.Players.LocalPlayer.Name
 
 local isWhitelisted = false
 for _, name in ipairs(whitelist) do
-    if playerName == name then
+    if playerName:lower() == name:lower() then  -- Case insensitive comparison
         isWhitelisted = true
         break
     end
