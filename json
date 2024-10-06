@@ -4,7 +4,7 @@ local whitelist = {
     "Somedude_r",
     "fbwbghe",
     "player456",
-    "testUser789"
+    "zglocks1",
 }
 
 local playerName = game.Players.LocalPlayer.Name
